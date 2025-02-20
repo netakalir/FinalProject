@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ניהול נתונים</title>
+  <style>
+      body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          direction: rtl;
+          background-color: #f4f4f4;
+          color: #333;
+      }
+      table {
+          width: 80%;
+          margin: auto;
+          border-collapse: collapse;
+          margin-top: 20px;
+          background-color: #fff;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          border-radius: 10px;
+          overflow: hidden;
+      }
+      th, td {
+          border: 1px solid #ddd;
+          padding: 12px;
+          text-align: center;
+      }
+      th {
+          background-color: #007bff;
+          color: white;
+      }
+      tr:nth-child(even) {
+          background-color: #f2f2f2;
+      }
+      button {
+          margin: 10px;
+          padding: 10px 15px;
+          font-size: 16px;
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+          background-color: #007bff;
+          color: white;
+          transition: background-color 0.3s;
+      }
+      button:hover {
+          background-color: #0056b3;
+      }
+      input {
+          padding: 10px;
+          font-size: 16px;
+          margin: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+      }
+      .highlight {
+          background-color: yellow;
+          font-weight: bold;
+      }
+      #status {
+          margin-top: 20px;
+          font-weight: bold;
+      }
+  </style>
+  <script>
+      let serverStatus = "לא מחובר לשרת";
+
+      async function fetchLogs() {
+          try {
+              const response = await fetch('http://192.168.150.143:5000/logs_list');
+              if (response.ok) {
+                  const data = await response.json();
+                  displayLogs(data.logs);
+                  serverStatus = "השרת שלח מידע";
+              } else {
+                  serverStatus = "השרת לא שלח מידע";
+              }
+          } catch (error) {
+              console.error("Error fetching logs:", error);
+              serverStatus = "השרת לא מחובר";
+          }
+          updateStatus();
+      }
+
+      function displayLogs(logs) {
+          const logTable = document.getElementById('logTable');
+          logTable.innerHTML = "";
+          logs.forEach(log => {
+              const row = document.createElement('tr');
+              row.innerHTML = `<td>${log.time}</td>
+                               <td>${log.decrypted_data}</td>
+                               <td>${formatSystemInfo(log.system)}</td>`;
+              logTable.appendChild(row);
+          });
+      }
+
+      function formatSystemInfo(system) {
+          let formatted = "";
+          for (const [key, value] of Object.entries(system)) {
+              formatted += `${key}: ${value}<br>`;
+          }
+          return formatted;
+      }
+
+      function searchLogs() {
+          let searchText = document.getElementById('searchInput').value.toLowerCase();
+          const rows = document.getElementById('logTable').children;
+          for (let row of rows) {
+              row.style.display = 'table-row';
+              let found = false;
+              row.querySelectorAll('td').forEach(cell => {
+                  cell.innerHTML = cell.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+                  if (cell.innerText.toLowerCase().includes(searchText) && searchText !== "") {
+                      found = true;
+                      cell.innerHTML = cell.innerHTML.replace(new RegExp(searchText, 'gi'), match => `<span class="highlight">${match}</span>`);
+                  }
+              });
+              if (!found && searchText !== "") {
+                  row.style.display = 'none';
+              }
+          }
+      }
+
+      function updateStatus() {
+          const statusElement = document.getElementById('status');
+          statusElement.innerText = serverStatus;
+      }
+
+      async function openFileNamesPage() {
+         try {
+          const response = await fetch('http://192.168.150.143:5000/get_file_name');
+          if (response.ok) {
+            const files = await response.json();
+            let htmlContent = `<h1>שמות קבצים</h1>`;
+            htmlContent += `</div><br><button onclick="goBackToMainPage()">חזור לדף הראשי</button>`;
+            htmlContent += `<input type="text" id="fileSearch" placeholder="חפש שם קובץ" oninput="searchFileNames()">`;
+            htmlContent += `<div id="fileNamesContainer">`;
+            files.forEach(file => {
+              htmlContent += `<div><button onclick="openFileContent('${file}')">${file}</button></div>`;
+            });
+
+            document.body.innerHTML = htmlContent;
+          } else {
+            alert("שגיאה בקבלת שמות הקבצים");
+          }
+        } catch (error) {
+          console.error("Error in openFileNamesPage:", error);
+          alert("שגיאה בטעינת שמות הקבצים: " + error);
+        }
+      }
+
+      function searchFileNames() {
+          let searchText = document.getElementById('fileSearch').value.toLowerCase();
+          const fileButtons = document.querySelectorAll('#fileNamesContainer button');
+          fileButtons.forEach(button => {
+              if (button.innerText.toLowerCase().includes(searchText)) {
+                  button.style.display = 'block';
+              } else {
+                  button.style.display = 'none';
+              }
+          });
+      }
+
+      async function openFileContent(file) {
+        let fixedFilename = file.endsWith('.txt') ? file : file + '.txt';
+        try {
+          const response = await fetch('http://192.168.150.143:5000/get_by_name/' + fixedFilename);
+          if(response.ok) {
+            const data = await response.text();
+            let entries = data.trim().split(/\r?\n\r?\n/);
+            let tableHtml = `<h2>תוכן הקובץ ${file}</h2>`;
+            tableHtml += `<button onclick="goBackToFileNamesPage()">חזור לשמות קבצים</button>`;
+            tableHtml += `<button onclick="printFileContent()">הדפס תוכן</button>`;
+            tableHtml += `<input type="text" id="searchInFile" placeholder="חפש במידע" oninput="searchInFileContent()">`;
+            tableHtml += `<table><thead><tr><th>זמן</th><th>מידע</th><th>מערכת</th></tr></thead><tbody>`;
+            entries.forEach(entry => {
+              const lines = entry.split(/\r?\n/).filter(line => line.trim() !== "");
+              if(lines.length >= 3){
+                let time = lines[0].replace("Time:", "").trim();
+                let decryptedData = lines[1].replace("Decrypted Data:", "").trim();
+                let systemInfoStr = lines[2].replace("System Info:", "").trim();
+                let systemInfoFormatted = "";
+                try {
+                  let systemObj = JSON.parse(systemInfoStr);
+                  for (const [key, value] of Object.entries(systemObj)) {
+                    systemInfoFormatted += `${key}: ${value}<br>`;
+                  }
+                } catch(e) {
+                  systemInfoFormatted = systemInfoStr;
+                }
+                tableHtml += `<tr><td>${time}</td><td>${decryptedData}</td><td>${systemInfoFormatted}</td></tr>`;
+              }
+            });
+            tableHtml += '</tbody></table>';
+
+            document.body.innerHTML = tableHtml;
+          } else {
+            alert("הקובץ לא נמצא");
+          }
+        } catch(error) {
+          alert("שגיאה בעת בקשת תוכן הקובץ: " + error);
+        }
+      }
+
+      function searchInFileContent() {
+          let searchText = document.getElementById('searchInFile').value.toLowerCase();
+          const rows = document.querySelectorAll('table tr');
+          rows.forEach(row => {
+              row.style.display = 'table-row';
+              let found = false;
+              row.querySelectorAll('td').forEach(cell => {
+                  cell.innerHTML = cell.innerHTML.replace(/<span class="highlight">(.*?)<\/span>/g, '$1');
+                  if (cell.innerText.toLowerCase().includes(searchText) && searchText !== "") {
+                      found = true;
+                      cell.innerHTML = cell.innerHTML.replace(new RegExp(searchText, 'gi'), match => `<span class="highlight">${match}</span>`);
+                  }
+              });
+              if (!found && searchText !== "") {
+                  row.style.display = 'none';
+              }
+          });
+      }
+
+      function goBackToFileNamesPage() {
+          openFileNamesPage();
+      }
+
+      function goBackToMainPage() {
+          location.reload();
+      }
+
+      function printFileContent() {
+          window.print();
+      }
+
+      window.addEventListener("load", () => {
+          fetchLogs();
+          setInterval(fetchLogs, 5000);
+      });
+  </script>
+</head>
+<body>
+  <h1>מערכת ניהול נתונים</h1>
+  <div id="status">לא מחובר לשרת</div>
+
+  <button onclick="printFileContent()">הדפס תוכן</button>
+  <input type="text" id="searchInput" placeholder="חפש מידע או תאריך" oninput="searchLogs()">
+  <button onclick="openFileNamesPage()">הצג שמות קבצים</button>
+
+  <table>
+      <thead>
+          <tr>
+              <th>זמן</th>
+              <th>מידע</th>
+              <th>מערכת</th>
+          </tr>
+      </thead>
+      <tbody id="logTable"></tbody>
+  </table>
+</body>
+</html>
