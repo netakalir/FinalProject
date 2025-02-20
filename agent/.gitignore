@@ -1,2 +1,28 @@
-.venv
-.env
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+env/
+venv/
+
+# PyCharm specific files
+.idea/
+
+# Distribution / packaging
+.Python
+*.egg-info/
+build/
+dist/
+
+# Log files
+*.log
+*.bak
+*.swp
+
+# Test coverage
+.coverage
+*.cover
+*.py,cover
+.hypothesis/
