@@ -1,7 +1,7 @@
 class EncryptedXor:
     def __init__(self):
-        self.text=""
-        self.key=""
+        self.text=None
+        self.key=None
 
     def xor_encrypt_decrypt(self,text,key):
        self.text = text

@@ -3,7 +3,7 @@ import requests
 
 class SendData:
     def __init__(self):
-        self.url = "http://192.168.150.143:5000"
+        self.url = "http://127.0.0.1:5000"
 
     def send_to_server(self, data):
         try:
