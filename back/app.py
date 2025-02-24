@@ -30,7 +30,6 @@ class Server:
         def get_file_name():
             return jsonify(self.name_file)
 
-
         @self.app.route('/get_all_data',methods=['GET'])  # שולח את המידע שנשמר בקובץ
         def get_all_data():
             return self.data_file
