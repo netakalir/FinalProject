@@ -18,7 +18,7 @@ class Server:
         self.path = os.path.abspath(os.getcwd())
 
 
-        @self.app.route('/', methods=['POST'])# מקבל מהלקוח מידע
+        @self.app.route('/savedata', methods=['POST'])# מקבל מהלקוח מידע
         def receive_data():
             return self.receive_data()
 
@@ -29,7 +29,6 @@ class Server:
         @self.app.route('/get_file_name', methods=['GET']) # מחזיר את שמות הקבצים שנוצרו
         def get_file_name():
             return jsonify(self.name_file)
-
 
         @self.app.route('/get_all_data',methods=['GET'])  # שולח את המידע שנשמר בקובץ
         def get_all_data():
@@ -112,4 +111,5 @@ class Server:
 if __name__ == '__main__':
     server = Server()
     server.run()
+
 
