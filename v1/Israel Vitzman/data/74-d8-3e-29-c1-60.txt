@@ -1,0 +1,31 @@
+Time: 23/02/2025 14:44:12
+Time: 23/02/2025 14:44:43
+Time: 23/02/2025 14:45:47
+Time: 23/02/2025 14:46:47
+Time: 23/02/2025 14:47:20
+Time: 23/02/2025 15:36:15
+Time: 23/02/2025 15:36:20
+Time: 23/02/2025 15:36:25
+Time: 23/02/2025 15:36:30
+Time: 23/02/2025 15:37:05
+Time: 23/02/2025 15:40:49
+Time: 23/02/2025 15:40:54
+Time: 23/02/2025 15:42:06
+Time: 23/02/2025 15:42:12
+Time: 23/02/2025 15:54:40
+Time: 23/02/2025 16:22:46
+Decrypted Data: ֽ־ֿ
+System Info: {"name": "DESKTOP-68DFHJ6", "ip": "192.168.150.181", "cpu": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel", "os": "Windows", "type_of_machine": "AMD64", "mac": "74:d8:3e:29:c1:60"}
+
+Time: 23/02/2025 16:22:51
+Decrypted Data: ֽ־ָָֺֺֻֻ
+System Info: {"name": "DESKTOP-68DFHJ6", "ip": "192.168.150.181", "cpu": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel", "os": "Windows", "type_of_machine": "AMD64", "mac": "74:d8:3e:29:c1:60"}
+
+Time: 23/02/2025 16:22:56
+Decrypted Data: ִִֵֵֶֶֶ
+System Info: {"name": "DESKTOP-68DFHJ6", "ip": "192.168.150.181", "cpu": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel", "os": "Windows", "type_of_machine": "AMD64", "mac": "74:d8:3e:29:c1:60"}
+
+Time: 23/02/2025 16:23:06
+Decrypted Data: և־օֽքֿև־օֽ־ֿ
+System Info: {"name": "DESKTOP-68DFHJ6", "ip": "192.168.150.181", "cpu": "Intel64 Family 6 Model 158 Stepping 13, GenuineIntel", "os": "Windows", "type_of_machine": "AMD64", "mac": "74:d8:3e:29:c1:60"}
+

