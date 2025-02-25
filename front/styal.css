@@ -1,12 +1,12 @@
 body{
-    font-family: Arial, sans-serif;
+    font-family:pix;
     text-align: center;
     direction: ltr;
     background-image: url("backgroundimage.jpg");
     background-size:cover;   
     background-position:center;
     background-attachment:fixed;
-    color:hsl(166, 100%, 50%);
+    color:white;
 }
 
 #login-page {
@@ -41,7 +41,7 @@ body{
 #countdown-cube {
     width: 200px;
     height: 115px;
-    background:linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    background:rgba(128, 128, 128, 0.467);
     border: 2px solid #bbb;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -64,14 +64,14 @@ body{
     margin-bottom: 10px;
 }
 #countdown-cube::before {
-content: "";
-position: absolute;
-top: 10px;
-left: 10px;
-right: 10px;
-bottom: 10px;
-border-radius: 8px;
-pointer-events: none;
+    width: 200px;
+    height: 115px;
+    background: linear-gradient(135deg, #333, #555); 
+    border: 1px solid #555; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -80,65 +80,63 @@ table{
     margin: auto;
     border-collapse: collapse;
     margin-top:20px;
-    background-color: #fff;
+    background-color:#222;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius:10px;
     overflow: hidden;
 }
 
-th{
-    border: 4px solid red;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    background-color: #44ff00;
-    color: white;
-}
-
-td{
-    border: 1px solid#ddd;
+th, td {
+    border: 1px solid #555;
     padding: 12px;
     text-align: center;
 }
 
+th {
+    background-color: #00008b; 
+    color: white;
+}
+
 tr:nth-child(even) {
-    background-color: gray;
+    background-color:#333;
 }
 
 tr:nth-child(odd) {
-    background-color: rgba(128, 128, 128, 0.316);
+    background-color: #444;
 }
 
 button{
-    border: 3px solid red;
+    border: 1px solid #00008b;
     margin: 10px;
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
     /* border: none; */
     border-radius: 5px;
-    background-color: #44ff00;
+    background-color: #00008b;
     color: white;
     transition: background-color 0.3s;
 }
 
 button:hover{
-    background-color: #0056b3;
+    background-color: #000066;
 }
 
 input {
     padding: 10px;
     font-size: 20px;
     margin: 10px;
-    border: 3px solid red;
+    border: 1px solid #00ffff;
     border-radius:5px; 
     max-width:100%;
     box-sizing: border-box;
+    background-color:#333;
+    color: white;
     
 }
 
 .highlight {
-    background-color: yellow;
+    background-color:#ffeb3b;
     font-weight: bold;
 }
 
@@ -147,11 +145,4 @@ input {
     font-weight: bold;
 }
 
-.wifi-off {
-    width: 20px;
-    height: 20px;
-    background-color: #000000;
-    mask: url('wifi-off-icon.svg') no-repeat center;
-    -webkit-mask: url('wifi-off-icon.svg') no-repeat center;
-}
 

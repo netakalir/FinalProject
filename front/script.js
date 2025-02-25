@@ -17,18 +17,23 @@ class IdList {
 }
 
 
-async function fetchLogs(){
+async function fetchLogs() {
     try {
         const response = await fetch('http://127.0.0.1:5000/logs_list');
         if (response.ok) {
             const data = await response.json();
             displayLogs(data.logs);
             serverStatus = "The server sent information";
+        } else if (response.status === 404) {
+            displayError('השרת לא מצא את המשאב המבוקש.');
+        } else if (response.status === 500) {
+            displayError('שגיאת שרת פנימית.');
         } else {
-            serverStatus = "The server did not send information.";
+            displayError('שגיאה לא ידועה בשרת.');
         }
     } catch (error) {
         console.error("Error fetching logs:", error);
+        displayError('השרת לא זמין.');
         serverStatus = "The server is offline";
     }
     updateStatus();
@@ -55,11 +60,11 @@ function displayLogs(logs){
 
 
 function formatSystemInfo(system){
-    let formatted = "";
+    let formattedSystemInfo = "";
     for (const [key, value] of Object.entries(system)){
-        formatted += `${key}: ${value}<br>`;
+        formattedSystemInfo += `${key}: ${value}<br>`;
     }
-    return formatted;
+    return formattedSystemInfo;
 }
 /*הפונקציה מקבלת אוביקט שמכיל מידע על המערכת.
 הפונקציה תחזיר מחרוזת html
@@ -120,7 +125,7 @@ async function openFileNamesPage(){
      }
    } catch (error) {
      console.error("Error in openFileNamesPage:", error);
-     alert("שגיאה בטעינת שמות הקבצים: " + error);
+     displayError(("שגיאה בטעינת שמות הקבצים: " + error));
    }
 }
 /* הפונקציה מאחזרת רשימת שמות קבצים מהשרת
@@ -146,50 +151,61 @@ function searchFileNames(){
 זה מאפשר למשתמש לסנן את הקבצים בקלות*/
 
 
-async function openFileContent(file){
+async function openFileContent(file) {
     let fixedFilename = file.endsWith('.txt') ? file : file + '.txt';
     try {
-      const response = await fetch('http://127.0.0.1:5000/get_by_name/' + fixedFilename);
-      if(response.ok) {
-        const data = await response.text();
-        let entries = data.trim().split(/\r?\n\r?\n/);
-        let tableHtml = `<h2>תוכן הקובץ ${file}</h2>`;
-        tableHtml += `<button onclick="goBackToFileNamesPage()">חזור לשמות קבצים</button>`;
-        tableHtml += `<button onclick="printFileContent()">הדפס תוכן</button>`;
-        tableHtml += `<input type="text" id="searchInFile" placeholder="חפש במידע" oninput="searchInFileContent()">`;
-        tableHtml += `<table><thead><tr><th>זמן</th><th>מידע</th><th>מערכת</th></tr></thead><tbody>`;
-        entries.forEach(entry => {
-          const lines = entry.split(/\r?\n/).filter(line => line.trim() !== "");
-          if(lines.length >= 3){
-            let time = lines[0].replace("Time:", "").trim();
-            let decryptedData = lines[1].replace("Decrypted Data:", "").trim();
-            let systemInfoStr = lines[2].replace("System Info:", "").trim();
-            let systemInfoFormatted = "";
-            try {
-              let systemObj = JSON.parse(systemInfoStr);
-              for (const [key, value] of Object.entries(systemObj)) {
-                systemInfoFormatted += `${key}: ${value}<br>`;
-              }
-            } catch(e) {
-              systemInfoFormatted = systemInfoStr;
-            }
-            tableHtml += `<tr><td>${time}</td><td>${decryptedData}</td><td>${systemInfoFormatted}</td></tr>`;
-          }
-        });
-        tableHtml += '</tbody></table>';
-
-        document.body.innerHTML = tableHtml;
-      } else {
-        alert("הקובץ לא נמצא");
-      }
-    } catch(error) {
-      alert("שגיאה בעת בקשת תוכן הקובץ: " + error);
+        const response = await fetch('http://127.0.0.1:5000/get_by_name/' + fixedFilename);
+        if (response.ok) {
+            const data = await response.text();
+            displayFileContent(file, data);
+        } else {
+            displayError("הקובץ לא נמצא");
+        }
+    } catch (error) {
+        displayError("שגיאה בעת בקשת תוכן הקובץ: " + error);
     }
 }
-/*הפונקציה מאחזרת את התוכן של קובץ טקסט מהשרת
-מעבדת נתונים ויוצרת טבלת html דינמית
-שתציג את התוכן של הקובץ 
-היא גם תטפל בשגיאות ותציג הודעה למשתמש */
+
+function displayFileContent(file, data) {
+    let entries = data.trim().split(/\r?\n\r?\n/);
+    let tableHtml = `<h2>תוכן הקובץ ${file}</h2>`;
+    tableHtml += `<button onclick="goBackToFileNamesPage()">חזור לשמות קבצים</button>`;
+    tableHtml += `<button onclick="printFileContent()">הדפס תוכן</button>`;
+    tableHtml += `<input type="text" id="searchInFile" placeholder="חפש במידע" oninput="searchInFileContent()">`;
+    tableHtml += `<table><thead><tr><th>זמן</th><th>מידע</th><th>מערכת</th></tr></thead><tbody>`;
+    entries.forEach(entry => {
+        const rowHtml = createFileTableRow(entry);
+        tableHtml += rowHtml;
+    });
+    tableHtml += '</tbody></table>';
+    document.body.innerHTML = tableHtml;
+}
+
+function createFileTableRow(entry) {
+    const lines = entry.split(/\r?\n/).filter(line => line.trim() !== "");
+    if (lines.length >= 3) {
+        let time = lines[0].replace("Time:", "").trim();
+        let decryptedData = lines[1].replace("Decrypted Data:", "").trim();
+        let systemInfoFormatted = formatSystemInfo(lines[2].replace("System Info:", "").trim());
+        return `<tr><td>${time}</td><td>${decryptedData}</td><td>${systemInfoFormatted}</td></tr>`;
+    }
+    return '';
+}
+
+function formatSystemInfo(systemInfoStr) {
+    let systemInfoFormatted = "";
+    try {
+        let systemObj = JSON.parse(systemInfoStr);
+        for (const [key, value] of Object.entries(systemObj)) {
+            systemInfoFormatted += `${key}: ${value}<br>`;
+        }
+    } catch (e) {
+        console.error("Error parsing JSON:", e);
+        systemInfoFormatted = "פורמט מידע מערכת לא תקין.";
+    }
+    return systemInfoFormatted;
+}
+
 
 
 function searchInFileContent(){
@@ -267,10 +283,11 @@ async function checkPassword() {
             // אימות הצליח - הפניה לדף הראשי
             window.location.href = "index.html";
         } else {
-            alert("1 מספר זהות שגוי.");
+            displayError("1 מספר זהות שגוי.");
         }
     } else {
-        alert("2 מספר זהות שגוי.");
+        displayError("2 מספר זהות שגוי.");
+        
     }
 }
 
@@ -281,7 +298,6 @@ function checkID(id){
 
 
 function updateCountdown() {
-    // תאריך יעד: תאריך החטיפה (החלף בתאריך הנכון)
     const targetDate = new Date("2023-10-07T06:30:00Z");
   
     // תאריך נוכחי
@@ -304,5 +320,8 @@ function updateCountdown() {
   // עדכון הזמן כל שנייה
   setInterval(updateCountdown, 1000);
   
-//   // הפעלה ראשונית של הפונקציה
-//   updateCountdown();
+  function displayError(message) {
+    document.getElementById('error-message').innerText = message;
+}
+
+
