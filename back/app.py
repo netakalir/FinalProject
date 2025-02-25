@@ -39,10 +39,6 @@ class Server:
             return self.get_by_name(filename)
 
 
-    def xor_encrypt_decrypt(self, text: str) -> str:
-        return ''.join(chr(ord(char) ^ ord(self.key[i % len(self.key)])) for i, char in enumerate(text))
-
-
     def receive_data(self):
         try:
 

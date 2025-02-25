@@ -42,6 +42,41 @@ async function fetchLogs() {
 מעדכנת את מצב החיבור לשרת ומציגה את הנתונים שהתקבלו*/
 
 
+
+// פונקציה שמבצעת קריאת GET מהשרת
+async function fetchData() {
+    try {
+        // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
+        const response = await fetch('http://localhost:5000/get_all_data', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // בדיקת תקינות התגובה
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+
+        // קבלת הנתונים שהשרת שלח והמרתם לפורמט JSON
+        const data = await response.json();
+
+        // הדפסת הנתונים שהתקבלו מהשרת לקונסול
+        console.log('Filename:', data.filename);
+        console.log('Content:', data.content);
+
+        // עדכון תוכן האלמנטים בדף HTML עם המידע שהתקבל
+        document.getElementById('filename').textContent = data.filename;
+        document.getElementById('content').textContent = data.content;
+
+    } catch (error) {
+        // טיפול בשגיאות והדפסת הודעת שגיאה לקונסול
+        console.error('Fetch error:', error);
+    }
+}
+
+
 function displayLogs(logs){
     const logTable = document.getElementById('logTable');
     logTable.innerHTML = "";
@@ -292,11 +327,12 @@ async function checkPassword() {
 }
 
 
-function checkID(id){
+function checkID(id) {
     return /^\d{9}$/.test(id);
 }
 
 
+<<<<<<< HEAD
 function updateCountdown() {
     const targetDate = new Date("2023-10-07T06:30:00Z");
   
@@ -325,3 +361,33 @@ function updateCountdown() {
 }
 
 
+=======
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+</head>
+<body>
+    <h1>File Data</h1>
+    <p>Filename: <span id="filename"></span></p>
+    <p>Content: <span id="content"></span></p>
+
+    <!-- קישור לקובץ ה-JavaScript -->
+    <script src="path/to/your/javascript/file.js"></script>
+</body>
+</html>
+
+>>>>>>> 459e11dbc3fc8c4796f2287443d2b6aa8657b33e
