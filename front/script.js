@@ -332,7 +332,7 @@ function checkID(id) {
 }
 
 
-<<<<<<< HEAD
+
 function updateCountdown() {
     const targetDate = new Date("2023-10-07T06:30:00Z");
   
@@ -361,33 +361,3 @@ function updateCountdown() {
 }
 
 
-=======
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display</title>
-</head>
-<body>
-    <h1>File Data</h1>
-    <p>Filename: <span id="filename"></span></p>
-    <p>Content: <span id="content"></span></p>
-
-    <!-- קישור לקובץ ה-JavaScript -->
-    <script src="path/to/your/javascript/file.js"></script>
-</body>
-</html>
-
->>>>>>> 459e11dbc3fc8c4796f2287443d2b6aa8657b33e
