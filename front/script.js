@@ -38,18 +38,11 @@ async function fetchLogs(){
 
 
 
-<<<<<<< HEAD
-async function fetchData() {
-    try {
-        // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
-        const response = await fetch('http://127.0.0.1:5000/get_all_data', {
-=======
 // פונקציה שמבצעת קריאת GET מהשרת
 async function fetchData() {
     try {
         // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
         const response = await fetch('http://localhost:5000/get_all_data', {
->>>>>>> 0e56d0b85c6f4755017e280081b59a8cd533d891
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
