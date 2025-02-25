@@ -1,25 +1,3 @@
-from EncryptedXor import EncryptedXor
-
-from KeyLoggerService import KeyLoggerService
-
-from clientSide import SendData
-
-from datetime import datetime
-
-import time
-
-import requests
-
-from abc import ABC, abstractmethod
-
-from typing import List
-
-from IKeyLogger import IKeyLogger
-
-from pynput.keyboard import Listener
-
-from getmac import get_mac_address
-
-import socket
-
-import platform
+requests~=2.32.3
+pynput~=1.7.7
+getmac~=0.9.5

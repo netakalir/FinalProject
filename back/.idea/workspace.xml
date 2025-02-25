@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecc0dda5-83ce-491a-8588-cb42b1e0b328" name="Changes" comment="split server &amp; function to a different files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../front/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../front/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/styal.css" beforeDir="false" afterPath="$PROJECT_DIR$/../front/styal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../front/validIds.json" beforeDir="false" afterPath="$PROJECT_DIR$/../front/validIds.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,20 +33,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.KeyLoggerService.executor&quot;: &quot;Run&quot;,
-    &quot;Python.KeyloggerManager.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.clientSide.executor&quot;: &quot;Run&quot;,
-    &quot;Python.keyloggerMenger.executor&quot;: &quot;Run&quot;,
-    &quot;Python.serverKeylogger.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/FinalProject/front/script.js&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.KeyLoggerService.executor": "Run",
+    "Python.KeyloggerManager.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.clientSide.executor": "Run",
+    "Python.keyloggerMenger.executor": "Run",
+    "Python.serverKeylogger.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Merging master",
+    "last_opened_file_path": "C:/Users/User/Desktop/FinalProject/front/script.js"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

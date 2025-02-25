@@ -3,7 +3,8 @@ class EncryptedXor:
         self.text=None
         self.key=None
 
-    def xor_encrypt_decrypt(self,text,key):
+    # encrypts all data
+    def xor_encrypt(self,text,key):
        self.text = text
        self.key = key
        result=[]
