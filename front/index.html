@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="he">
 <head>
   <meta charset="UTF-8">
@@ -8,14 +8,15 @@
 </head>
 
 <body id ="main-page">
+
   <div dir="rtl" id="countdown-cube">
     <p id="countdown-text"></p>
   </div>
-  <div id="error-message" style="color: red;"></div>
+  <div1 id="error-message" style="color:white"></div1>
   <br>
   <h1>data management system</h1>
-  <div id="status">not connected to the server</div>
-
+  <div2 id="status">not connected to the server</div2>
+  <br>
   <button onclick="printFileContent()">print content</button>
   <input type= "text" id = "searchInput" placeholder = "search for information or date" oninput = "searchLogs()">
   <button onclick="openFileNamesPage()">show file names</button>
@@ -31,5 +32,67 @@
       <tbody id="logTable"></tbody>
   </table>
   <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data management</title>
+    <link rel="stylesheet" href="stayle.css">
+</head>
+
+<body id="main-page">
+
+    <div class="countdown-container"> 
+        <div class="message">
+            Hundreds are held <span class="highlight">hostage</span> by Hamas
+        </div>
+        <div class="countdown">
+            <div class="time" id="days">000</div>
+            <div class="separator">:</div>
+            <div class="time" id="hours">00</div>
+            <div class="separator">:</div>
+            <div class="time" id="minutes">00</div>
+            <div class="separator">:</div>
+            <div class="time" id="seconds">00</div>
+        </div>
+        <div class="labels">
+            <div class="label">DAYS</div>
+            <div class="label">HRS</div>
+            <div class="label">MIN</div>
+            <div class="label">SEC</div>
+        </div>
+        <div class="message bottom">
+            BRING THEM HOME NOW <img src="Yellow_Ribbon.png" alt="סמל החטופים" class="kidnapped-symbol">
+        </div>
+    </div>
+
+    <div dir="rtl" id="countdown-cube">
+        <p id="countdown-text"></p>
+    </div>
+    <div1 id="error-message" style="color:white"></div1>
+    <br>
+    <h1>data management system</h1>
+    <div2 id="status">not connected to the server</div2>
+    <br>
+    <div class="buttons-container">
+      <button onclick="printFileContent()">print content</button>
+      <textarea id="search-text" placeholder="search for information or data"></textarea>
+      <button onclick="openFileNamesPage()">show file names</button>
+  </div>
+    <table>
+        <thead>
+            <tr>
+                <th>time</th>
+                <th>information</th>
+                <th>system</th>
+            </tr>
+        </thead>
+        <tbody id="logTable"></tbody>
+    </table>
+    <script src="script.js"></script>
 </body>
 </html>

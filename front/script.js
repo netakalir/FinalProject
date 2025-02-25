@@ -33,7 +33,7 @@ async function fetchLogs() {
         }
     } catch (error) {
         console.error("Error fetching logs:", error);
-        displayError('השרת לא זמין.');
+        displayError('The server is unavailable.');
         serverStatus = "The server is offline";
     }
     updateStatus();
@@ -333,26 +333,21 @@ function checkID(id) {
 
 function updateCountdown() {
     const targetDate = new Date("2023-10-07T06:30:00Z");
-  
-    // תאריך נוכחי
     const currentDate = new Date();
-  
-    // חישוב הפרש הזמן בשניות
     const timeDifference = Math.floor((currentDate - targetDate) / 1000);
-  
-    // חישוב ימים, שעות, דקות ושניות
+
     const days = Math.floor(timeDifference / (60 * 60 * 24));
     const hours = Math.floor((timeDifference % (60 * 60 * 24)) / (60 * 60));
     const minutes = Math.floor((timeDifference % (60 * 60)) / 60);
     const seconds = timeDifference % 60;
-  
-    // הצגת הזמן בקוביה
-    const countdownText = document.getElementById("countdown-text");
-    countdownText.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
-  }
-  
-  // עדכון הזמן כל שנייה
-  setInterval(updateCountdown, 1000);
+
+    document.getElementById("days").textContent = days.toString().padStart(3, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+}
+
+setInterval(updateCountdown, 1000);
   
   function displayError(message) {
     document.getElementById('error-message').innerText = message;

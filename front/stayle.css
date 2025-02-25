@@ -6,27 +6,15 @@ body{
     background-size:cover;   
     background-position:center;
     background-attachment:fixed;
-    color:white;
+    color:white;    
 }
 
-#login-page {
-    background-image: url("login.jpg"); 
-    background-size: cover;
-    background-position:center;
-    background-attachment:fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+div1 {
+    font-size: 30px; 
 }
 
-#login-form {
-    background-color: goldenrod;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+div2 {
+    font-size: 20px; 
 }
 
 #main-page {
@@ -38,48 +26,11 @@ body{
     margin: 0;
 }
 
-#countdown-cube {
-    width: 200px;
-    height: 115px;
-    background:gray;
-    border: 2px solid #bbb;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-family: Arial,sans-serif;
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease-in-out;
-}
-
-#countdown-cube:hover {
-    transform: scale(1.05); 
-}
-
-#countdown-text {
-    margin-bottom: 10px;
-}
-#countdown-cube::before {
-    width: 200px;
-    height: 115px;
-    background: linear-gradient(135deg, #333, #555); 
-    border: 1px solid #555; 
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-}
-
-
 table{
     width: 90%;
     margin: auto;
     border-collapse: collapse;
-    margin-top:20px;
+    margin-top:40px;
     background-color:#222;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius:10px;
@@ -87,22 +38,24 @@ table{
 }
 
 th, td {
-    border: 1px solid #555;
     padding: 12px;
     text-align: center;
 }
 
 th {
-    background-color: #00008b; 
+    background-color: #000066; 
     color: white;
-}
+    border: 4px solid #555;
+    overflow: hidden;
+}   
 
 tr:nth-child(even) {
-    background-color:#333;
+    background-color:#444;
+
 }
 
 tr:nth-child(odd) {
-    background-color: #444;
+    background-color: #555;
 }
 
 button{
@@ -111,33 +64,55 @@ button{
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-    /* border: none; */
+    border: 3px solid #555;;
     border-radius: 5px;
-    background-color: #00008b;
+    background-color: #000066;
     color: white;
     transition: background-color 0.3s;
 }
 
 button:hover{
-    background-color: #000066;
+    background-color: #00008b;
 }
 
-input {
-    padding: 10px;
-    font-size: 20px;
-    margin: 10px;
-    border: 1px solid #00ffff;
+/* input[type="text"]{
+    width: 90%;
+    max-width: 500px;
+    min-height: 40px; 
+    padding: 15px;
+    font-size: 18px;
+    margin: 10px auto;
+    border: 3px solid #555;
     border-radius:5px; 
-    max-width:100%;
     box-sizing: border-box;
-    background-color:#333;
+    background-color:#444;
     color: white;
-    
+    display: block;
+} */
+
+.buttons-container { /* קונטיינר לכפתורים בדף הבא */
+    display: flex;
+    justify-content: space-between; /* פיזור שווה בין הכפתורים */
+    width: 90%; /* הגדרת רוחב */
+    height: 80px; /* גובה */
+    max-width: 500px; /* הגבלת רוחב מקסימלי */
+    margin: 10px auto; /* מרכוז */
 }
 
-.highlight {
-    background-color:#ffeb3b;
-    font-weight: bold;
+textarea {
+    width: auto;
+    max-width: 500px;
+    padding: 10px;
+    font-size: 18px;
+    margin: 3px auto;
+    border: 3px solid #555;
+    border-radius: 2px;
+    box-sizing: border-box;
+    background-color: #444;
+    color: white;
+    display: block;
+    min-height: 50px; /* הגדלת גובה מינימלי */
+    resize: vertical; /* אפשרות לשינוי גובה אנכי */
 }
 
 #status {
@@ -145,4 +120,117 @@ input {
     font-weight: bold;
 }
 
+
+body#login-page {
+    position: relative;
+    background-image: url("8200-1024x488-1.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#login-form {
+    background-color: rgba(128, 128, 128, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 180px; 
+    width: 220px; 
+    text-align: center; 
+}
+#login-form h2 {
+    margin-bottom: 10px;
+    color: white; 
+}
+
+#login-form input[type="text"] {
+    width: 58%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#login-form button {
+    background-color: #00008b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#login-form button:hover {
+    background-color: #000066;
+
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+
+.countdown-container {
+    position: fixed;
+    top: 10px;
+    left: 10px; 
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.time {
+    padding: 0 5px;
+}
+
+.separator {
+    padding: 0 2px;
+}
+
+.labels {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.label {
+    padding: 0 5px;
+}
+
+.message {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    background-color: red;
+    padding: 2px 5px;
+
+}
+
+.message.bottom {
+    font-size: 20px;
+    color: yellow;
+}
+
+.kidnapped-symbol {
+    width: 30px; 
+    height: 30px; 
+    vertical-align: middle; 
+    margin-left: 0.0px; 
+}
 
