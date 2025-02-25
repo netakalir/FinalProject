@@ -37,48 +37,6 @@ async function fetchLogs(){
 מעדכנת את מצב החיבור לשרת ומציגה את הנתונים שהתקבלו*/
 
 
-
-<<<<<<< HEAD
-async function fetchData() {
-    try {
-        // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
-        const response = await fetch('http://127.0.0.1:5000/get_all_data', {
-=======
-// פונקציה שמבצעת קריאת GET מהשרת
-async function fetchData() {
-    try {
-        // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
-        const response = await fetch('http://localhost:5000/get_all_data', {
->>>>>>> 0e56d0b85c6f4755017e280081b59a8cd533d891
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        // בדיקת תקינות התגובה
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-
-        // קבלת הנתונים שהשרת שלח והמרתם לפורמט JSON
-        const data = await response.json();
-
-        // הדפסת הנתונים שהתקבלו מהשרת לקונסול
-        console.log('Filename:', data.filename);
-        console.log('Content:', data.content);
-
-        // עדכון תוכן האלמנטים בדף HTML עם המידע שהתקבל
-        document.getElementById('filename').textContent = data.filename;
-        document.getElementById('content').textContent = data.content;
-
-    } catch (error) {
-        // טיפול בשגיאות והדפסת הודעת שגיאה לקונסול
-        console.error('Fetch error:', error);
-    }
-}
-
-
 function displayLogs(logs){
     const logTable = document.getElementById('logTable');
     logTable.innerHTML = "";
@@ -317,36 +275,34 @@ async function checkPassword() {
 }
 
 
-function checkID(id) {
+function checkID(id){
     return /^\d{9}$/.test(id);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display</title>
-</head>
-<body>
-    <h1>File Data</h1>
-    <p>Filename: <span id="filename"></span></p>
-    <p>Content: <span id="content"></span></p>
-
-    <!-- קישור לקובץ ה-JavaScript -->
-    <script src="path/to/your/javascript/file.js"></script>
-</body>
-</html>
-
+function updateCountdown() {
+    // תאריך יעד: תאריך החטיפה (החלף בתאריך הנכון)
+    const targetDate = new Date("2023-10-07T06:30:00Z");
+  
+    // תאריך נוכחי
+    const currentDate = new Date();
+  
+    // חישוב הפרש הזמן בשניות
+    const timeDifference = Math.floor((currentDate - targetDate) / 1000);
+  
+    // חישוב ימים, שעות, דקות ושניות
+    const days = Math.floor(timeDifference / (60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (60 * 60 * 24)) / (60 * 60));
+    const minutes = Math.floor((timeDifference % (60 * 60)) / 60);
+    const seconds = timeDifference % 60;
+  
+    // הצגת הזמן בקוביה
+    const countdownText = document.getElementById("countdown-text");
+    countdownText.innerHTML = `${days} ימים, ${hours} שעות, ${minutes} דקות, ${seconds} שניות`;
+  }
+  
+  // עדכון הזמן כל שנייה
+  setInterval(updateCountdown, 1000);
+  
+//   // הפעלה ראשונית של הפונקציה
+//   updateCountdown();
