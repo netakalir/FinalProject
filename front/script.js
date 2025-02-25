@@ -47,7 +47,7 @@ async function fetchLogs() {
 async function fetchData() {
     try {
         // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
-        const response = await fetch('http://localhost:5000/get_all_data', {
+        const response = await fetch('http://127.0.0.1:5000/get_all_data', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -230,17 +230,15 @@ function createFileTableRow(entry) {
 function formatSystemInfo(systemInfoStr) {
     let systemInfoFormatted = "";
     try {
-        let systemObj = JSON.parse(systemInfoStr);
-        for (const [key, value] of Object.entries(systemObj)) {
+        for (const [key, value] of Object.entries(systemInfoStr)) {
             systemInfoFormatted += `${key}: ${value}<br>`;
         }
-    } catch (e) {
+    }catch (e) {
         console.error("Error parsing JSON:", e);
         systemInfoFormatted = "פורמט מידע מערכת לא תקין.";
     }
     return systemInfoFormatted;
 }
-
 
 
 function searchInFileContent(){
@@ -359,5 +357,3 @@ function updateCountdown() {
   function displayError(message) {
     document.getElementById('error-message').innerText = message;
 }
-
-
