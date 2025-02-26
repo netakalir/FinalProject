@@ -3,7 +3,7 @@ import requests
 # connects to server
 class SendData:
     def __init__(self):
-        self.url = "http://127.0.0.1:5000/savedata"
+        self.url = "http://127.0.0.1:5000/save_data"
 
     # sends all data to server
     def send_to_server(self, data):
