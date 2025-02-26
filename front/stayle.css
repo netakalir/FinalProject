@@ -27,7 +27,7 @@ div2 {
 }
 
 table {
-    width: 100%;
+    width: 80%;
     margin: auto;
     border-collapse: collapse;
     margin-top: 40px;
@@ -36,6 +36,7 @@ table {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid #555; /* הוספת מסגרת לטבלה */
+    table-layout: fixed;
 }
 
 th, td {
@@ -43,6 +44,8 @@ th, td {
     text-align: center;
     border: 1px solid blue; /* הוספת מסגרת לכל התאים */
     vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 th {
@@ -68,7 +71,9 @@ tr:nth-child(odd) {
 
 td:nth-child(3) { /* עמודה שלישית */
     font-size: 14px; /* גודל גופן קטן יותר */
+    max-width: 300px; /* רוחב מקסימלי */
 }
+
 
 button{
     border: 1px solid #004666c0;
