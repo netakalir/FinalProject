@@ -80,7 +80,6 @@ class Server:
 
             with open(file_path, "a", encoding="utf-8") as file:
                 file.write(f"Time: {self.logs_dict['time']}\n")
-                file.write(f"Decrypted Data: {self.logs_dict['encrypted_data']}\n")
                 file.write(f"Decrypted Data: {self.logs_dict['dencrypted_data']}\n")
                 file.write(f"System Info: {json.dumps(self.logs_dict['system'])}\n")
                 file.write("\n")
