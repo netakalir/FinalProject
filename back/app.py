@@ -40,10 +40,7 @@ class Server:
         def get_file_name():
             return jsonify(self.name_file)
 
-        # returns file name with data inside
-        @self.app.route('/get_all_data',methods=['GET'])  # שולח את המידע שנשמר בקובץ
-        def get_all_data():
-            return self.data_file
+
 
         # return data through file name
         @self.app.route('/get_by_name/<string:filename>', methods=['GET']) # שולח מידע לפי בקשת UI
@@ -98,11 +95,7 @@ class Server:
     def get_file_name(self):
         return jsonify(self.name_file)
 
-    def get_all_data(self):
-        with open(self.path,"r") as file:
-            file_content = file.read()
-        self.data_file = {"filename": "data.txt", "content": file_content}
-        return jsonify(self.data_file)
+
 
     def get_by_name(self, filename):
         folder_path =  os.path.abspath(os.getcwd())

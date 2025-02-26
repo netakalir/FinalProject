@@ -42,41 +42,6 @@ async function fetchLogs() {
 מעדכנת את מצב החיבור לשרת ומציגה את הנתונים שהתקבלו*/
 
 
-
-// פונקציה שמבצעת קריאת GET מהשרת
-async function fetchData() {
-    try {
-        // שימוש ב-fetch לביצוע בקשת GET לנתיב '/get_all_data' בשרת Flask
-        const response = await fetch('http://127.0.0.1:5000/get_all_data', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        // בדיקת תקינות התגובה
-        if (!response.ok) {
-            throw new Error('Network response was not ok: ' + response.statusText);
-        }
-
-        // קבלת הנתונים שהשרת שלח והמרתם לפורמט JSON
-        const data = await response.json();
-
-        // הדפסת הנתונים שהתקבלו מהשרת לקונסול
-        console.log('Filename:', data.filename);
-        console.log('Content:', data.content);
-
-        // עדכון תוכן האלמנטים בדף HTML עם המידע שהתקבל
-        document.getElementById('filename').textContent = data.filename;
-        document.getElementById('content').textContent = data.content;
-
-    } catch (error) {
-        // טיפול בשגיאות והדפסת הודעת שגיאה לקונסול
-        console.error('Fetch error:', error);
-    }
-}
-
-
 function displayLogs(logs){
     const logTable = document.getElementById('logTable');
     logTable.innerHTML = "";
@@ -153,7 +118,6 @@ async function openFileNamesPage(){
        files.forEach(file => {
          htmlContent += `<div><button onclick="openFileContent('${file}')">${file}</button></div>`;
        });
-
        document.body.innerHTML = htmlContent;
      } else {
        alert("שגיאה בקבלת שמות הקבצים");
@@ -382,3 +346,4 @@ function updateCountdown() {
 }
 
 setInterval(updateCountdown, 1000);
+  
