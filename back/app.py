@@ -14,26 +14,30 @@ class Server:
         self.data_file={}
         self.name_file=[]
         self.file_path=None
-        self.key = "abc"
+        self.key = "israelvitzman"
         self.path = os.path.abspath(os.getcwd())
 
-
+        # stores the received data
         @self.app.route('/savedata', methods=['POST'])# מקבל מהלקוח מידע
         def receive_data():
             return self.receive_data()
 
+        # temporary storage of data
         @self.app.route('/logs_list', methods=['GET'])   # שולח את המידע בכל זמן נתון
         def get_logs():
             return self.get_logs()
 
+        # stores list of file names
         @self.app.route('/get_file_name', methods=['GET']) # מחזיר את שמות הקבצים שנוצרו
         def get_file_name():
             return jsonify(self.name_file)
 
+        # returns file name with data inside
         @self.app.route('/get_all_data',methods=['GET'])  # שולח את המידע שנשמר בקובץ
         def get_all_data():
             return self.data_file
 
+        # return data through file name
         @self.app.route('/get_by_name/<string:filename>', methods=['GET']) # שולח מידע לפי בקשת UI
         def get_file(filename):
             return self.get_by_name(filename)
@@ -50,7 +54,7 @@ class Server:
             if not data:
                 return jsonify({"error": "מחכה לשליחת מידע..."}), 400
 
-            self.logs_dict = {"decrypted_data": data,"time": time,"system": system}
+            self.logs_dict = {"encrypted_data": data,"time": time,"system": system}
             self.logs_list.append(self.logs_dict)
 
             name_for_file = str(self.logs_dict['system']['mac']).replace(":", "-")
