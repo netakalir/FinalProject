@@ -40,11 +40,7 @@ class Server:
         def get_file_name():
             return jsonify(self.name_file)
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 616d4e78c081cf9d5b9aa9cdb2289ac3811ac0dc
         # return data through file name
         @self.app.route('/get_by_name/<string:filename>', methods=['GET']) # שולח מידע לפי בקשת UI
         def get_file(filename):
@@ -97,10 +93,7 @@ class Server:
     def get_file_name(self):
         return jsonify(self.name_file)
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 616d4e78c081cf9d5b9aa9cdb2289ac3811ac0dc
 
     def get_by_name(self, filename):
         folder_path =  os.path.abspath(os.getcwd())
