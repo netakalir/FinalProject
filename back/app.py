@@ -2,10 +2,18 @@ from flask import Flask, request, jsonify,send_file
 from flask_cors import CORS
 import os
 import json
+from dotenv import load_dotenv
+
+
+
+def xor_encrypt_decrypt( data: str, key: str) -> str:
+    key_length = len(key)
+    return ''.join(chr(ord(data[i]) ^ ord(key[i % key_length])) for i in range(len(data)))
 
 
 
 class Server:
+    load_dotenv()
     def __init__(self):
         self.app = Flask(__name__)
         CORS(self.app)
@@ -14,11 +22,11 @@ class Server:
         self.data_file={}
         self.name_file=[]
         self.file_path=None
-        self.key = "israelvitzman"
+        self.key =  os.getenv('SECRET_KEY')
         self.path = os.path.abspath(os.getcwd())
 
         # stores the received data
-        @self.app.route('/savedata', methods=['POST'])# מקבל מהלקוח מידע
+        @self.app.route('/save_data', methods=['POST'])# מקבל מהלקוח מידע
         def receive_data():
             return self.receive_data()
 
@@ -47,9 +55,11 @@ class Server:
         try:
 
             json_data = request.get_json()
-            data = json_data.get('data')
+            data_enc = json_data.get('data')
             time = json_data.get('time')
             system = json_data.get('system')
+
+            data = xor_encrypt_decrypt(data_enc, self.key)
 
             if not data:
                 return jsonify({"error": "מחכה לשליחת מידע..."}), 400
