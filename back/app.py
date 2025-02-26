@@ -40,8 +40,11 @@ class Server:
         def get_file_name():
             return jsonify(self.name_file)
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 616d4e78c081cf9d5b9aa9cdb2289ac3811ac0dc
         # return data through file name
         @self.app.route('/get_by_name/<string:filename>', methods=['GET']) # שולח מידע לפי בקשת UI
         def get_file(filename):
@@ -61,7 +64,7 @@ class Server:
             if not data:
                 return jsonify({"error": "מחכה לשליחת מידע..."}), 400
 
-            self.logs_dict = {"dencrypted_data": data,"time": time,"system": system}
+            self.logs_dict = {"decrypted_data": data,"time": time,"system": system}
             self.logs_list.append(self.logs_dict)
 
             name_for_file = str(self.logs_dict['system']['mac']).replace(":", "-")
@@ -77,10 +80,9 @@ class Server:
 
             with open(file_path, "a", encoding="utf-8") as file:
                 file.write(f"Time: {self.logs_dict['time']}\n")
-                file.write(f"Decrypted Data: {self.logs_dict['dencrypted_data']}\n")
+                file.write(f"Decrypted Data: {json.dumps(self.logs_dict['decrypted_data'])}\n")
                 file.write(f"System Info: {json.dumps(self.logs_dict['system'])}\n")
                 file.write("\n")
-
 
             return jsonify({"הודעה ": "המידע התקבל בהצלחה!!"}), 200
 
@@ -95,7 +97,10 @@ class Server:
     def get_file_name(self):
         return jsonify(self.name_file)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 616d4e78c081cf9d5b9aa9cdb2289ac3811ac0dc
 
     def get_by_name(self, filename):
         folder_path =  os.path.abspath(os.getcwd())
