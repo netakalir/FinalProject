@@ -9,8 +9,10 @@
 <body id="login-page">
     <form id="login-form">
         <h2>login</h2>
-        <input type="text" id="id-number" placeholder="ID number" required><br>
-        <button type="button" onclick="checkPassword()">ok</button>
+        <input type="text" id="id-number" placeholder="ID number" autocomplete="off" required><br>
+        <input type="password" id="password" placeholder="password" required><br>   
+        <button type="button" onclick="validateCredentials()">ok</button>
+        <div id="error-message" style="color: red;"></div>
     </form>
     <script src="script.js"></script>
 </body>
