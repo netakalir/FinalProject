@@ -2,7 +2,7 @@ body{
     font-family:pix;
     text-align: center;
     direction: ltr;
-    background-image: url("backgroundimage.webp");
+    background-image: url("FBI_cyber.webp");
     background-size:cover;   
     background-position:center;
     background-attachment:fixed;
@@ -18,7 +18,7 @@ div2 {
 }
 
 #main-page {
-    background-image: url("backgroundimage.webp");
+    background-image: url("FBI_cyber.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -26,69 +26,67 @@ div2 {
     margin: 0;
 }
 
-table{
-    width: 90%;
+table {
+    width: 100%;
     margin: auto;
     border-collapse: collapse;
-    margin-top:40px;
-    background-color:#222;
+    margin-top: 40px;
+    background-color: #222;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius:10px;
+    border-radius: 10px;
     overflow: hidden;
+    border: 1px solid #555; /* הוספת מסגרת לטבלה */
 }
 
 th, td {
     padding: 12px;
     text-align: center;
+    border: 1px solid blue; /* הוספת מסגרת לכל התאים */
+    vertical-align: top;
 }
 
 th {
-    background-color: #000066; 
+    background-color: #004666c0; 
     color: white;
-    border: 4px solid #555;
     overflow: hidden;
+    word-break: break-word;
 }   
 
-tr:nth-child(even) {
-    background-color:#444;
+tr {
+    min-height: 50px; /* גובה שורות מינימלי */
+    height: 60px;
+}
 
+tr:nth-child(even) {
+    background-color: #444;
 }
 
 tr:nth-child(odd) {
-    background-color: #555;
+    background-color: #555555;
+}
+
+
+td:nth-child(3) { /* עמודה שלישית */
+    font-size: 14px; /* גודל גופן קטן יותר */
 }
 
 button{
-    border: 1px solid #00008b;
+    border: 1px solid #004666c0;
     margin: 10px;
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-    border: 3px solid #555;;
+    border: 3px solid #555555;;
     border-radius: 5px;
-    background-color: #000066;
+    background-color: #004666c0;
     color: white;
     transition: background-color 0.3s;
 }
 
 button:hover{
-    background-color: #00008b;
+    background-color: #004666c0;
 }
 
-/* input[type="text"]{
-    width: 90%;
-    max-width: 500px;
-    min-height: 40px; 
-    padding: 15px;
-    font-size: 18px;
-    margin: 10px auto;
-    border: 3px solid #555;
-    border-radius:5px; 
-    box-sizing: border-box;
-    background-color:#444;
-    color: white;
-    display: block;
-} */
 
 .buttons-container { /* קונטיינר לכפתורים בדף הבא */
     display: flex;
@@ -123,7 +121,7 @@ textarea {
 
 body#login-page {
     position: relative;
-    background-image: url("8200-1024x488-1.webp");
+    background-image: url("login.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -136,7 +134,7 @@ body#login-page {
 
 #login-form {
     background-color: rgba(128, 128, 128, 0.8);
-    padding: 30px;
+    padding: 39px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     height: 180px; 

@@ -308,27 +308,61 @@ async function loadValidIds() {
 הפונקציה מחזירה את המידע שהתקבל מהשרת*/
 
 
-async function checkPassword() {
+async function validateCredentials() {
     const idNumber = document.getElementById("id-number").value;
-    const validIds = await loadValidIds(); // טעינת המערך
-    if (checkID(idNumber)) {
-        if (validIds.includes(idNumber)) {
-            // אימות הצליח - הפניה לדף הראשי
-            window.location.href = "index.html";
-        } else {
-            displayError("1 מספר זהות שגוי.");
-        }
-    } else {
-        displayError("2 מספר זהות שגוי.");
-        
+    const passwordInput = document.getElementById("password").value;
+    const validIds = await loadValidIds();
+    const validPasswords = await loadValidPasswords();
+
+    if (!checkID(idNumber)) {
+        displayError("מספר זהות לא תקין.");
+        return;
+    }
+
+    if (!validIds.includes(idNumber)) {
+        displayError("מספר זהות שגוי.");
+        return;
+    }
+
+    if (!validPasswords.includes(passwordInput)) {
+        displayError("סיסמה שגויה.");
+        return;
+    }
+    
+    // אימות הצליח - הפניה לדף הראשי
+    window.location.href = "index.html";
+}
+
+async function loadValidIds() {
+    try {
+        const response = await fetch("validids.json");
+        const data = await response.json();
+        return data.validlds;
+    } catch (error) {
+        console.error("שגיאה בטעינת תעודות זהות:", error);
+        return [];
     }
 }
 
+async function loadValidPasswords() {
+    try {
+        const response = await fetch("password.json");
+        const data = await response.json();
+        return data.password;
+    } catch (error) {
+        console.error("שגיאה בטעינת סיסמאות:", error);
+        return [];
+    }
+}
 
 function checkID(id) {
     return /^\d{9}$/.test(id);
 }
 
+function displayError(message) {
+    const errorMessage = document.getElementById("error-message");
+    errorMessage.textContent = message;
+}
 
 
 function updateCountdown() {
@@ -348,7 +382,3 @@ function updateCountdown() {
 }
 
 setInterval(updateCountdown, 1000);
-  
-  function displayError(message) {
-    document.getElementById('error-message').innerText = message;
-}
