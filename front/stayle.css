@@ -28,6 +28,7 @@ div2 {
 
 table {
     width: 80%;
+    /* max-width: 800px; */
     margin: auto;
     border-collapse: collapse;
     margin-top: 40px;
@@ -97,12 +98,12 @@ button:hover{
     display: flex;
     justify-content: space-between; /* פיזור שווה בין הכפתורים */
     width: 90%; /* הגדרת רוחב */
-    height: 80px; /* גובה */
+    height: 100px; /* גובה */
     max-width: 500px; /* הגבלת רוחב מקסימלי */
     margin: 10px auto; /* מרכוז */
 }
 
-textarea {
+input {
     width: auto;
     max-width: 500px;
     padding: 10px;

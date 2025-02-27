@@ -116,7 +116,9 @@ async function openFileNamesPage(){
        htmlContent += `<input type="text" id="fileSearch" placeholder="חפש שם קובץ" oninput="searchFileNames()">`;
        htmlContent += `<div id="fileNamesContainer">`;
        files.forEach(file => {
-         htmlContent += `<div><button onclick="openFileContent('${file}')">${file}</button></div>`;
+        //  htmlContent += `<div><button onclick="openFileContent('${file}')">${file}</button></div>`;
+         htmlContent += `<div style="cursor: pointer;" onclick="openFileContent('${file}')">${file}</div>`;
+         
        });
        document.body.innerHTML = htmlContent;
      } else {
